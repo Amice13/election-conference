@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="vendors/flat-icon/font/flaticon.css">
-
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,7 +24,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container box_1620">
-          <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" style="max-width: 280px;" alt=""></a>
+          <a class="navbar-brand logo_h" href="index.html"><img src="img/logo-ukr.png" style="max-width: 130px;" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -33,7 +32,7 @@
           </button>
 
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-            <ul class="nav navbar-nav menu_nav justify-content-end">
+            <ul class="nav navbar-nav menu_nav justify-content-between">
               <li class="nav-item active"><a class="nav-link" href="index.html">Головна</a></li> 
               <li class="nav-item"><a class="nav-link" href="#about">Про конференцію</a></li> 
               <li class="nav-item"><a class="nav-link" href="#speakers">Спікери</a>
@@ -42,8 +41,9 @@
               <li class="nav-item"><a class="nav-link" href="#contacts">Контакти</a></li>
             </ul>
 
-            <ul class="nav-right text-center text-lg-right py-4 py-lg-0">
-              <li><a target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Взяти участь</a></li>
+            <ul class="nav-right lang justify-content-end py-4 py-lg-0 d-flex">
+              <li class="mr-2 ml-2"><a href="#"><img src="img/lang/uk.png"/ ></a></li>
+              <li><a href="#"><img src="img/lang/en.png"/ ></a></li>
             </ul>
           </div> 
         </div>
@@ -54,19 +54,27 @@
 
   
   <!--================Hero Banner Area Start =================-->
-  <section id="main" class="hero-banner">
+  <section id="main" style="text-align:center; background: #032639;">
+    <img class="d-none d-md-block" style="width:100%; max-width: 87%; margin: auto;" src="./img/main.jpg">
+    <div class="pb-5 pt-5 pl-5 pr-5 d-lg-none d-xl-none d-md-none">
+      <img class="mb-4" src="img/logo-ukr.png" style="width: 100%;" alt="Вибори в цифрову епоху">
+      <span style="color: #05FCE8; border-radius: 5px; border: #05FCE8 1px solid; padding: 5px 10px;">24-25.03.2020</span>
+    </div>
+    <!-- 
     <div class="container text-center">
       <span class="hero-banner-icon"><i class="flaticon-sing"></i></span>
       <p>23 - 24 березня, 2020, Київ</p>
       <h1>Вибори в цифрову епоху</h1>
       <a class="button button-header" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Додати до Google Calendar</a>
     </div>
+  -->
   </section>
   <!--================Hero Banner Area End =================-->
 
 
   <!--================ Innovation section Start =================-->
-  <section id="about" class="section-padding--small bg-gray">
+  <div id="about" style="position: relative; top: -90px;"></div>
+  <section class="section-padding--small bg-gray">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center mb-5 mb-lg-0">
@@ -95,7 +103,7 @@
           
           <div class="clockdiv-content text-center">
             <p class="h4 primary-text2 mb-2">23 - 24 березня 2020 року у м. Київ</p>
-            <a class="button button-link" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Додати до Google Calendar</a>
+            <a class="button button-link add-btn" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Додати до Google Calendar</a>
           </div>
         </div>
       </div>
@@ -107,43 +115,18 @@
   <!--================ Join section Start =================-->
   <section class="section-margin">
     <div class="container">
-      <div class="section-intro text-center pb-98px">
+      <div class="section-intro text-center pb-5">
         <p class="section-intro__title">Відеотранлсяція</p>
         <h2 class="primary-text">Дивіться конференцію в режимі Live!</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
 
-
       <div class="d-lg-flex justify-content-between">
-        <div class="card-feature mb-5 mb-lg-0">
-          <div class="feature-icon">
-            <i class="flaticon-prize"></i>
-          </div>
-          <h3>Always First Service</h3>
-          <p>His likeness beast moved domini moved above meat all fly blessed greater creepeth you itself living room </p>
-        </div>
-
-        <div class="card-feature mb-5 mb-lg-0">
-          <div class="feature-icon">
-            <i class="flaticon-earth-globe"></i>
-          </div>
-          <h3>International Business</h3>
-          <p>His likeness beast moved domini moved above meat all fly blessed greater creepeth you itself living room </p>
-        </div>
-
-        <div class="card-feature mb-5 mb-lg-0">
-          <div class="feature-icon">
-            <i class="flaticon-sing"></i>
-          </div>
-          <h3>World Great Speaker</h3>
-          <p>His likeness beast moved domini moved above meat all fly blessed greater creepeth you itself living room </p>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/UgKr_9SEAms" frameborder="0" allowfullscreen class="video"></iframe>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-12 text-center">
-          <a class="button mb-2" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Додати до Google Calendar</a>
-        </div>
-      </div>
+
     </div>
   </section>
   <!--================ Join section End =================-->
@@ -153,8 +136,8 @@
   <section id="speakers" class="speaker-bg section-padding">
     <div class="container">
       <div class="section-intro section-intro-white text-center pb-98px">
-        <p class="section-intro__title">Join the event</p>
-        <h2 class="primary-text">Meet The Speakers</h2>
+        <p class="section-intro__title">Залучені</p>
+        <h2 class="primary-text">Спікери конференції</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
 
@@ -271,7 +254,8 @@
 
 
   <!--================ Schedule section Start =================-->
-  <section id="schedule" class="section-margin mb-5 pb-5 pt-5">
+  <section class="section-margin mb-5 pb-5 pt-5">
+    <div style="position: relative; top:-120px;" id="schedule"></div>
     <div class="container">
       <div class="section-intro text-center pb-98px">
         <p class="section-intro__title">Беріть участь</p>
@@ -367,23 +351,54 @@
 
       <div class="sponsor-wrapper mb-5 pb-4">
         <div class="row">
-          <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+          <div class="col-sm-6 col-lg-3 mb-3">
             <div class="sponsor-single">
-              <img class="img-fluid" src="img/home/sponsor1.png" alt="">
+              <a href="https://www.cvk.gov.ua/" target="_blank"><img class="img-fluid" src="img/organizations/cvk.png" alt="Центральна виборча комісія"></a>
             </div>
           </div>
 
-          <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+          <div class="col-sm-6 col-lg-3 mb-3">
             <div class="sponsor-single">
-              <img class="img-fluid" src="img/home/sponsor2.png" alt="">
+              <a href="https://www.ukaiddirect.org/" target="_blank"><img class="img-fluid" src="img/organizations/UKAID.png" alt="UK Aid Direct"></a>
             </div>
           </div>
 
-          <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+          <div class="col-sm-6 col-lg-3 mb-3">
             <div class="sponsor-single">
-              <img class="img-fluid" src="img/home/sponsor3.png" alt="">
+              <a href="https://www.coe.int/en/web/portal" target="_blank"><img class="img-fluid" src="img/organizations/CouncilOfEU.png" alt="Рада Європи"></a>
             </div>
           </div>
+
+          <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a href="https://ifesukraine.org/" target="_blank"><img class="img-fluid" src="img/organizations/IFES.png" alt="IFES Україна"></a>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a href="https://www.osce.org/" target="_blank"><img class="img-fluid" src="img/organizations/OSCE.png" alt="Організація з безпеки і співробітництва в Європі"></a>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a href="https://www.usaid.gov/uk/ukraine" target="_blank"><img class="img-fluid" src="img/organizations/USAID.png" alt="Агентство США з міжнародного розвитку"></a>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a href="https://osce.usmission.gov/" target="_blank"><img class="img-fluid" src="img/organizations/USOSCE.png" alt="Місія США при ОБСЄ"></a>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a href="https://www.canadainternational.gc.ca/ukraine/index.aspx?lang=ukr" target="_blank"><img class="img-fluid" src="img/organizations/canada.png" alt="Посольство Канади в Україні"></a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -395,7 +410,7 @@
     <div class="container">
       <div class="section-intro section-intro-white text-center pb-98px">
         <p class="section-intro__title">Додатково</p>
-        <h2 class="primary-text">Фото з заходу</h2>
+        <h2 class="primary-text">Фото заходу</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
 
@@ -575,22 +590,20 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="single-footer-widget">
-            <h6>Navigation Links</h6>
+            <h6>Посилання</h6>
             <div class="row">
               <div class="col">
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Feature</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Portfolio</a></li>
+                  <li><a href="#">Головна</a></li>
+                  <li><a href="#">Про конференцію</a></li>
+                  <li><a href="#">Спікери</a></li>
                 </ul>
               </div>
               <div class="col">
                 <ul>
-                  <li><a href="#">Team</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">Розклад</a></li>
+                  <li><a href="#">Організатори</a></li>
+                  <li><a href="#">Контакти</a></li>
                 </ul>
               </div>										
             </div>							
@@ -665,6 +678,14 @@ var app = new Vue({
   }
 })
 
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+    });
+  });
+});
 </script>
 <style>
 .schedule-card ul {
@@ -696,6 +717,96 @@ var app = new Vue({
   font-style: italic;
   color: steelblue;
 }
+
+.lang img {
+  max-width: 30px;
+}
+
+.main_menu {
+  background: #032639 !important;
+}
+
+.main_menu .nav-item a {
+  color: #05FCE7 !important;
+}
+
+.main_menu .nav-item a:hover {
+  color: #FFF !important;
+}
+
+.main_menu .nav-item.active a {
+  color: #FFF !important;
+}
+.sponsor-single img {
+  max-width: 80% !important;
+  max-height: 90%;
+}
+
+.footer-area p {
+  color: rgba(255,255,255, 0.6);
+}
+
+.footer-area a {
+  color: #05FCE7 !important;
+}
+
+.footer-area a:hover {
+  color: #FFF !important;
+}
+
+.add-btn {
+  background: #032639;
+  color: #FFF;
+  padding: 10px 20px;
+}
+
+.add-btn:hover {
+  background: rgba(3,58,56,0.95);
+  color: #FFF;
+  padding: 10px 20px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-brand {
+  display: none;
+}
+
+.navbar_fixed .navbar-brand {
+  display: block;
+}
+
+.container.box_1620 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar_fixed .container.box_1620 {
+  justify-content: inherit;
+}
+
+@media (max-width: 991px) {
+  .header_area .navbar {
+      background: #032639 !important;
+  }
+  .navbar-toggler .icon-bar {
+    background: #FFF !important;
+  }
+}
+
+
 
 </style>
 </body>
