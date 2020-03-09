@@ -11,10 +11,6 @@
   <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="vendors/linericon/style.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="vendors/flat-icon/font/flaticon.css">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -68,15 +64,6 @@
   </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159068088-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-159068088-1');
-    ga('set', 'dimension1', 'Українська');
-  </script>
-
 </head>
 <body>
   <div id="app">
@@ -121,14 +108,6 @@
       <img class="mb-4" src="img/logo-ukr.png" style="width: 100%;" alt="Вибори в цифрову епоху">
       <span style="color: #05FCE8; border-radius: 5px; border: #05FCE8 1px solid; padding: 5px 10px;">24-25.03.2020</span>
     </div>
-    <!-- 
-    <div class="container text-center">
-      <span class="hero-banner-icon"><i class="flaticon-sing"></i></span>
-      <p>23 - 24 березня, 2020, Київ</p>
-      <h1>Вибори в цифрову епоху</h1>
-      <a class="button button-header" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83&details=%D0%9C%D1%96%D0%B6%D0%BD%D0%B0%D1%80%D0%BE%D0%B4%D0%BD%D0%B0+%D0%BA%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D1%96%D1%8F%3A+%C2%AB%D0%92%D0%B8%D0%B1%D0%BE%D1%80%D0%B8+%D0%B2+%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%83+%D0%B5%D0%BF%D0%BE%D1%85%D1%83%C2%BB&location=%D0%BC.+%D0%9A%D0%B8%D1%97%D0%B2&dates=20200323T144700Z%2F20200324T144700Z">Додати до Google Calendar</a>
-    </div>
-  -->
   </section>
   <!--================Hero Banner Area End =================-->
 
@@ -140,9 +119,9 @@
       <div class="row">
         <div class="col-lg-6 align-self-center mb-5 mb-lg-0">
           <div class="innovative-wrapper">
-            <h3 class="primary-text">Міжнародна конференція <br class="d-none d-xl-block"> «Вибори в цифрову епоху»</h3>
-            <p class="h4 primary-text2 mb-3">Експерти з питань виборів з усього світу</p>
-            <p>Morning steas great earth for divide our good sixth called abunda itseld appear fisrd seaton upon above may bearing all moveth morning make subdue stars they are a goreat eart divide our good sixth one of that</p>
+            <h3 class="primary-text">Міжнародна конференція <br class="d-none d-xl-block"> {{ globalData.title }}</h3>
+            <p class="h4 primary-text2 mb-3">{{ globalData.subtitle }}</p>
+            <p>{{ globalData.description }}</p>
           </div>
         </div>
         <div class="col-lg-6 pl-xl-5">
@@ -174,7 +153,7 @@
 
 
   <!--================ Join section Start =================-->
-  <section class="section-margin">
+  <section class="section-margin" v-if="globalData.youtube_video">
     <div class="container">
       <div class="section-intro text-center pb-5">
         <p class="section-intro__title">Відеотранлсяція</p>
@@ -184,7 +163,7 @@
 
       <div class="d-lg-flex justify-content-between">
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/UgKr_9SEAms" frameborder="0" allowfullscreen class="video"></iframe>
+          <iframe :src="globalData.youtube_video" frameborder="0" allowfullscreen class="video"></iframe>
         </div>
       </div>
 
@@ -194,117 +173,50 @@
 
 
   <!--================ Speaker section Start =================-->
-  <section id="speakers" class="speaker-bg section-padding">
+  <section id="speakers" class="speaker-bg section-padding" v-if="speakers.length">
     <div class="container">
       <div class="section-intro section-intro-white text-center pb-98px">
-        <p class="section-intro__title">Залучені</p>
         <h2 class="primary-text">Спікери конференції</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
 
       <div class="row">
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+        <div class="col-lg-4 col-sm-6 mb-4" v-for="(speaker, speakerIndex) in speakers" v-key="'speaker-' + speakerIndex">
           <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-1.png" alt="">
+            <img class="card-img rounded-0" :src="speaker.image" alt="">
             <div class="speaker-footer">
-              <h4>Jhon Leonar</h4>
-              <p>UX/UI Designer Microsoft</p>
+              <h4 @click="setCurrentSpeaker(speakerIndex)" data-toggle="modal" data-target="#speakerModal">{{ speaker.name }}</h4>
+              <p>{{ speaker.position }}</p>
             </div>
             <div class="speaker-overlay">
               <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
+                <li v-if="speaker.facebook"><a :href="speaker.facebook"><i class="ti-facebook"></i></a></li>
+                <li v-if="speaker.twitter"><a :href="speaker.twitter"><i class="ti-twitter-alt"></i></a></li>
+                <li v-if="speaker.instagram"><a :href="speaker.instagram"><i class="ti-instagram"></i></a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-2.png" alt="">
-            <div class="speaker-footer">
-              <h4>Donald Markin</h4>
-              <p>UX/UI Designer Microsoft</p>
-            </div>
-            <div class="speaker-overlay">
-              <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-3.png" alt="">
-            <div class="speaker-footer">
-              <h4>Donald Markin</h4>
-              <p>UX/UI Designer Microsoft</p>
-            </div>
-            <div class="speaker-overlay">
-              <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-100 mb-50px d-none d-lg-block"></div>
-
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-1.png" alt="">
-            <div class="speaker-footer">
-              <h4>Donald Markin</h4>
-              <p>UX/UI Designer Microsoft</p>
-            </div>
-            <div class="speaker-overlay">
-              <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-2.png" alt="">
-            <div class="speaker-footer">
-              <h4>Donald Markin</h4>
-              <p>UX/UI Designer Microsoft</p>
-            </div>
-            <div class="speaker-overlay">
-              <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-          <div class="card-speaker">
-            <img class="card-img rounded-0" src="img/home/speaker-3.png" alt="">
-            <div class="speaker-footer">
-              <h4>Jhon Leonar</h4>
-              <p>UX/UI Designer Microsoft</p>
-            </div>
-            <div class="speaker-overlay">
-              <ul class="speaker-social">
-                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                <li><a href="#"><i class="ti-skype"></i></a></li>
-              </ul>
+        <!-- Modal -->
+        <div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div>
+                  <h5 class="modal-title" id="exampleModalLongTitle">{{ currentSpeaker.name }}</h5>
+                  <p class="modal-title" id="exampleModalLongTitle">{{ currentSpeaker.position }}</p>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img :src="currentSpeaker.image" class="w-100 mb-4" />
+                <vue-markdown :key="currentSpeaker.name">{{ currentSpeaker.description }}</vue-markdown>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+              </div>
             </div>
           </div>
         </div>
@@ -319,7 +231,6 @@
     <div style="position: relative; top:-120px;" id="schedule"></div>
     <div class="container">
       <div class="section-intro text-center pb-98px">
-        <p class="section-intro__title">Беріть участь</p>
         <h2 class="primary-text">План заходу</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
@@ -403,63 +314,34 @@
 
   <!--================ Sponsor section Start =================-->
   <section id="sponsors" class="section-padding--small sponsor-bg">
-    <div class="container">
+    <div class="container" v-if="organizers.length">
       <div class="section-intro text-center pb-80px">
-        <p class="section-intro__title">Організатори</p>
+        <h2 class="primary-text">Організатори</h2>
+        <img src="img/home/section-style.png" alt="">
+      </div>
+      <div class="sponsor-wrapper mb-5 pb-4">
+        <div class="row">
+          <div v-for="(organizer, organizerIndex) in organizers" v-key="'organizer-' + organizerIndex" class="col-sm-6 col-lg-3 mb-3">
+            <div class="sponsor-single">
+              <a :href="organizer.url" target="_blank"><img class="img-fluid" :src="organizer.logo" alt="organizer.title"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" v-if="supporters.length">
+      <div class="section-intro text-center pb-80px">
         <h2 class="primary-text">Захід проходе за підтримки організацій</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
-
       <div class="sponsor-wrapper mb-5 pb-4">
         <div class="row">
-          <div class="col-sm-6 col-lg-3 mb-3">
+          <div v-for="(supporter, supporterIndex) in supporters" v-key="'supporter-' + supporterIndex" class="col-sm-6 col-lg-3 mb-3">
             <div class="sponsor-single">
-              <a href="https://www.cvk.gov.ua/" target="_blank"><img class="img-fluid" src="img/organizations/cvk.png" alt="Центральна виборча комісія"></a>
+              <a :href="supporter.url" target="_blank"><img class="img-fluid" :src="supporter.logo" alt="supporter.title"></a>
             </div>
           </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://www.ukaiddirect.org/" target="_blank"><img class="img-fluid" src="img/organizations/UKAID.png" alt="UK Aid Direct"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://www.coe.int/en/web/portal" target="_blank"><img class="img-fluid" src="img/organizations/CouncilOfEU.png" alt="Рада Європи"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://ifesukraine.org/" target="_blank"><img class="img-fluid" src="img/organizations/IFES.png" alt="IFES Україна"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://www.osce.org/" target="_blank"><img class="img-fluid" src="img/organizations/OSCE.png" alt="Організація з безпеки і співробітництва в Європі"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://www.usaid.gov/uk/ukraine" target="_blank"><img class="img-fluid" src="img/organizations/USAID.png" alt="Агентство США з міжнародного розвитку"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://osce.usmission.gov/" target="_blank"><img class="img-fluid" src="img/organizations/USOSCE.png" alt="Місія США при ОБСЄ"></a>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-lg-3 mb-3">
-            <div class="sponsor-single">
-              <a href="https://www.canadainternational.gc.ca/ukraine/index.aspx?lang=ukr" target="_blank"><img class="img-fluid" src="img/organizations/canada.png" alt="Посольство Канади в Україні"></a>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
@@ -467,7 +349,7 @@
   <!--================ Sponsor section End =================-->
 
   <!--================ Gallery section Start =================-->
-  <section id="gallery" class="section-padding gallery-area gallery-bg">
+  <section id="gallery" class="section-padding gallery-area gallery-bg" v-show="photos.length">
     <div class="container">
       <div class="section-intro section-intro-white text-center pb-98px">
         <p class="section-intro__title">Додатково</p>
@@ -476,10 +358,10 @@
       </div>
 
       <div class="row no-gutters">
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g1.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g1.png" alt="">		
+        <div class="col-sm-6 col-md-4" v-for="(photo, photoIndex) in photos" v-key="'photo-' + photoIndex">
+          <span data-toggle="modal" data-target="#photoModal" @click="setCurrentPhoto(photoIndex)" class="img-gal" style="cursor: pointer;">
+            <div class="single-imgs relative">
+              <img class="card-img rounded-0" v-if="photo.ID" :src="'https://drive.google.com/thumbnail?id=' + photo.ID" style="height: 200px !important; object-fit: cover;" alt="">
               <div class="overlay">
                 <div class="overlay-content">
                   <div class="overlay-icon">
@@ -488,77 +370,18 @@
                 </div>
               </div>
             </div>
-          </a>
+          </span>
         </div>
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g2.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g2.png" alt="">		
-              <div class="overlay">
-                <div class="overlay-content">
-                  <div class="overlay-icon">
-                    <i class="ti-plus"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g3.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g3.png" alt="">		
-              <div class="overlay">
-                <div class="overlay-content">
-                  <div class="overlay-icon">
-                    <i class="ti-plus"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g4.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g4.png" alt="">		
-              <div class="overlay">
-                <div class="overlay-content">
-                  <div class="overlay-icon">
-                    <i class="ti-plus"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g5.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g5.png" alt="">		
-              <div class="overlay">
-                <div class="overlay-content">
-                  <div class="overlay-icon">
-                    <i class="ti-plus"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <a href="img/gallery/g6.png" class="img-gal">
-            <div class="single-imgs relative">				
-              <img class="card-img rounded-0" src="img/gallery/g6.png" alt="">		
-              <div class="overlay">
-                <div class="overlay-content">
-                  <div class="overlay-icon">
-                    <i class="ti-plus"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
+      </div>
+
+      <div v-if="showImages < allPhotos.length" class="row d-flex mt-4">
+        <button style="margin: auto;" class="button button-link add-btn" target="_blank" @click="showImages+=6">Завантажити ще</button>
+      </div>
+      <div id="photoModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <img class="card-img rounded-0" v-if="currentPhoto.ID" :src="'https://drive.google.com/uc?id=' + currentPhoto.ID" style="width:100%; height: auto;" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -567,69 +390,27 @@
 
 
   <!--================ Blog section Start =================-->
-  <section class="section-margin">
+  <section class="section-margin" v-show="materials.length">
     <div class="container">
       <div class="section-intro text-center pb-98px">
-        <p class="section-intro__title">Join the event</p>
         <h2 class="primary-text">Матеріали конференції</h2>
         <img src="img/home/section-style.png" alt="">
       </div>
 
-      <div class="owl-theme owl-carousel blogCarousel pb-xl-1">
-        <div class="card-blog">
-          <img class="card-img" src="https://loremflickr.com/320/240/conference?lock=2" alt="">
-          <div class="blog-body">
-            <a href="#">
-              <h3>Owls should be used to help abused children open <br class="d-none d-xl-block">
-                  up in therapy sessions, says charity boss</h3>
-            </a>
-            <ul class="blog-info">
-              <li><a href="#"><i class="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-              <li><a href="#"><i class="ti-time"></i> No Comment</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card-blog">
-          <img class="card-img" src="https://loremflickr.com/320/240/conference?lock=1" alt="">
-          <div class="blog-body">
-            <a href="#">
-              <h3>Owls should be used to help abused children open <br class="d-none d-xl-block">
-                  up in therapy sessions, says charity boss</h3>
-            </a>
-            <ul class="blog-info">
-              <li><a href="#"><i class="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-              <li><a href="#"><i class="ti-time"></i> No Comment</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card-blog">
-          <img class="card-img" src="https://loremflickr.com/320/240/conference?lock=3" alt="">
-          <div class="blog-body">
-            <a href="#">
-              <h3>Owls should be used to help abused children open <br class="d-none d-xl-block">
-                  up in therapy sessions, says charity boss</h3>
-            </a>
-            <ul class="blog-info">
-              <li><a href="#"><i class="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-              <li><a href="#"><i class="ti-time"></i> No Comment</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card-blog">
-          <img class="card-img" src="https://loremflickr.com/320/240/conference?lock=5" alt="">
-          <div class="blog-body">
-            <a href="#">
-              <h3>Owls should be used to help abused children open <br class="d-none d-xl-block">
-                  up in therapy sessions, says charity boss</h3>
-            </a>
-            <ul class="blog-info">
-              <li><a href="#"><i class="ti-comments-smiley"></i> 03 Feb, 2019</a></li>
-              <li><a href="#"><i class="ti-time"></i> No Comment</a></li>
-            </ul>
-          </div>
+      <div style="display:flex;" class="card-blog mb-4" v-for="(material, materialIndex) in materials" v-key="'material-' + materialIndex">
+        <svg class="pl-4" style="width: 75px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path d="m451.7 99.72-71.4-71.44c-15.6-15.55-46.3-28.28-68.3-28.28h-240c-22 0-40 18-40 40v432c0 22 18 40 40 40h368c22 0 40-18 40-40v-304c0-22-12.7-52.7-28.3-68.28z"/>
+          <path fill="#fff" d="m448 472c0 4.3-3.7 8-8 8h-368c-4.34 0-8-3.7-8-8v-432c0-4.34 3.66-8 8-8h240c2.4 0 5.1.30 8 .85v127.2h127.1c.6 2.9.9 5.6.9 8v304z"/>
+          <path d="m414.5 316.8c-2.1 1.3-8.1 2.1-11.9 2.1-12.4 0-27.6-5.7-49.1-14.9 8.3-.6 15.8-.9 22.6-.9 12.4 0 16 0 28.2 3.1 12.1 3 12.2 9.3 10.2 10.6zm-215.1 1.9c4.8-8.4 9.7-17.3 14.7-26.8 12.2-23.1 20-41.3 25.7-56.2 11.5 20.9 25.8 38.6 42.5 52.8 2.1 1.8 4.3 3.5 6.7 5.3-34.1 6.8-63.6 15-89.6 24.9zm39.8-218.9c6.8 0 10.7 17.06 11 33.16.3 16-3.4 27.2-8.1 35.6-3.9-12.4-5.7-31.8-5.7-44.5 0 0-.3-24.26 2.8-24.26zm-133.4 307.2c3.9-10.5 19.1-31.3 41.6-49.8 1.4-1.1 4.9-4.4 8.1-7.4-23.5 37.6-39.3 52.5-49.7 57.2zm315.2-112.3c-6.8-6.7-22-10.2-45-10.5-15.6-.2-34.3 1.2-54.1 3.9-8.8-5.1-17.9-10.6-25.1-17.3-19.2-18-35.2-42.9-45.2-70.3.6-2.6 1.2-4.8 1.7-7.1 0 0 10.8-61.5 7.9-82.3-.4-2.9-.6-3.7-1.4-5.9l-.9-2.5c-2.9-6.76-8.7-13.96-17.8-13.57l-5.3-.17h-.1c-10.1 0-18.4 5.17-20.5 12.84-6.6 24.3.2 60.5 12.5 107.4l-3.2 7.7c-8.8 21.4-19.8 43-29.5 62l-1.3 2.5c-10.2 20-19.5 37-27.9 51.4l-8.7 4.6c-.6.4-15.5 8.2-19 10.3-29.6 17.7-49.28 37.8-52.54 53.8-1.04 5-.26 11.5 5.01 14.6l8.4 4.2c3.63 1.8 7.53 2.7 11.43 2.7 21.1 0 45.6-26.2 79.3-85.1 39-12.7 83.4-23.3 122.3-29.1 29.6 16.7 66 28.3 89 28.3 4.1 0 7.6-.4 10.5-1.2 4.4-1.1 8.1-3.6 10.4-7.1 4.4-6.7 5.4-15.9 4.1-25.4-.3-2.8-2.6-6.3-5-8.7z"/>
+          <path fill="#fff" d="m429.1 122.3c1.6 1.6 3.1 3.5 4.6 5.7h-81.7v-81.73c2.2 1.52 4.1 3.08 5.7 4.64l71.4 71.39z"/>
+        </svg>
+        <div class="blog-body" style="padding-left: 25px;">
+          <a :href="material.url">
+            <h3>{{ material.title }}</h3>
+          </a>
+          <ul class="blog-info">
+            <li><a href="#"><i class="ti-user"></i> {{ material.author }}</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -705,22 +486,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Ус�
   </div>
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/Magnific-Popup/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/countdown.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>	
-  <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.2/src/tabletop.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-markdown@2.2.4/dist/vue-markdown.js"></script>
-
+  <script src="js/countdown.js"></script>
 <script>
 const publicSpreadsheetUrl = '1iouyCqJc9HmBuAKEQjc1_Ui0zu6qjVrUp-4n6RW973I'
 
 Vue.use(VueMarkdown)
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   mounted () {
     let app = this
@@ -728,28 +502,73 @@ var app = new Vue({
       key: publicSpreadsheetUrl,
       simpleSheet: false,
       callback: (data) => {
-        this.dataDay1 = data.Day1.elements
-        this.dataDay2 = data.Day2.elements
+        app.dataDay1 = data.Day1.elements
+        app.dataDay2 = data.Day2.elements
+        app.speakers = data.Speakers.elements
+        app.materials = data.Materials.elements
+        app.allPhotos = data.Pictures.elements
+        app.organizersData = data.Organizers.elements
+        let globalData = data.Global.elements.reduce((acc, val) => {
+          acc[val.key] = val.value
+          return acc
+        }, {})
+        globalData.youtube_video = globalData.youtube_video.replace(/.*[?&]v=(.{11}).*/g, 'https://www.youtube.com/embed/$1')
+        app.globalData = Object.assign({}, globalData)
       }
     })
   },
   data: {
     dataDay1: [],
-    dataDay2: []
+    dataDay2: [],
+    speakers: [],
+    organizersData: [],
+    allPhotos: [],
+    materials: [],
+    globalData: {},
+    currentSpeaker: {
+      image: '',
+      name: '',
+      position: '',
+      bio: ''
+    },
+    currentPhoto: {
+      ID: ''
+    },
+    showImages: 6
+  },
+  methods: {
+    setCurrentSpeaker: function(index) {
+      this.currentSpeaker = Object.assign({}, this.speakers[index])
+    },
+    setCurrentPhoto: function(index) {
+      this.currentPhoto = Object.assign({}, this.photos[index])
+    }
+  },
+  computed: {
+    organizers: function() {
+      return this.organizersData.filter(el => el.type === 'organizer')
+    },
+    supporters: function() {
+      return this.organizersData.filter(el => el.type === 'supporter')
+    },
+    photos: function() {
+      return this.allPhotos.slice(0, this.showImages)
+    }
   }
 })
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
+    e.preventDefault()
     document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
-    });
-  });
-});
+    })
+  })
+})
 </script>
+<script src="js/main.js"></script>
 <style>
-.schedule-card ul {
+.schedule-card ul, #speakerModal ul {
   display: block;
   list-style-type: disc;
   margin-block-start: 1em;
@@ -777,6 +596,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   display: block;
   font-style: italic;
   color: steelblue;
+}
+
+.card-speaker h4 {
+  cursor: pointer;
+}
+
+.card-speaker h4:hover {
+  text-decoration: underline;
 }
 
 .lang img {
@@ -867,8 +694,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   }
 }
 
-
+#photoModal.show {
+  display: flex !important;
+  align-items: center;
+}
 
 </style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159068088-1');
+  ga('set', 'dimension1', 'Українська');
+</script>
 </body>
 </html>
