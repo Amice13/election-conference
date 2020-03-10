@@ -8,9 +8,7 @@
 	<link rel="icon" href="img/favicon.png" type="image/png">
 
   <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="vendors/linericon/style.css">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -63,7 +61,7 @@
   }
   </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159068088-1"></script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=UA-159068088-1"></script>
 </head>
 <body>
   <div id="app">
@@ -121,7 +119,7 @@
           <div class="innovative-wrapper">
             <h3 class="primary-text">Міжнародна конференція <br class="d-none d-xl-block"> {{ globalData.title }}</h3>
             <p class="h4 primary-text2 mb-3">{{ globalData.subtitle }}</p>
-            <p>{{ globalData.description }}</p>
+            <vue-markdown key="descr" v-if="globalData.description">{{ globalData.description }}</vue-markdown>
           </div>
         </div>
         <div class="col-lg-6 pl-xl-5">
@@ -491,7 +489,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> Ус�
   <script src="https://cdn.jsdelivr.net/npm/vue-markdown@2.2.4/dist/vue-markdown.js"></script>
   <script src="js/countdown.js"></script>
 <script>
-const publicSpreadsheetUrl = '1iouyCqJc9HmBuAKEQjc1_Ui0zu6qjVrUp-4n6RW973I'
+const publicSpreadsheetUrl = '1hK-hiwy6_ccheqrRnRUpg0N6H-evIQszbmXFBD9YCyg'
 
 Vue.use(VueMarkdown)
 const app = new Vue({
@@ -524,7 +522,9 @@ const app = new Vue({
     organizersData: [],
     allPhotos: [],
     materials: [],
-    globalData: {},
+    globalData: {
+      description: ''
+    },
     currentSpeaker: {
       image: '',
       name: '',
