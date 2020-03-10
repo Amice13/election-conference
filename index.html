@@ -420,15 +420,12 @@
   <footer id="contacts" class="footer-area">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4  col-md-6 col-sm-12">
+        <div class="col-lg-8  col-md-8 col-sm-12">
           <div class="single-footer-widget">
-            <h6>Координатор проектів ОБСЄ в Україні</h6>
-            <p>
-              Координатор проектів ОБСЄ в Україні – Посол Генрік Вілладсен з Данії. Його офіс розташований в столиці країни – Києві, в команді Координатора - три іноземних фахівця та вісімедсят чотири громадянина України.
-            </p>
+            <h6 v-if="globalData.title">{{ globalData.title }}</h6>
+            <vue-markdown v-if="globalData.description">{{ globalData.description }}</vue-markdown>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+          <hr />
           <div class="single-footer-widget">
             <h6>Посилання</h6>
             <div class="row">
@@ -445,19 +442,30 @@
                   <li><a href="#">Організатори</a></li>
                   <li><a href="#">Контакти</a></li>
                 </ul>
-              </div>										
-            </div>							
+              </div>                    
+            </div>              
           </div>
         </div>
         <div class="col-lg-4  col-md-6 col-sm-12">
           <div class="single-footer-widget mail-chimp">
             <h6 class="mb-20">Контакти</h6>
-              <p>16 Striletska Street<br/>
-              01030 Kyiv<br/>
-              Ukraine<br/>
-              Phone: <a href="tel:+380444920382">+380 44 492 0382</a><br/>
-              Fax: <a href="tel:+380444920383">+380 44 492 0383</a><br/>
-              <a href="mailto:office-pcu@osce.org">office-pcu@osce.org</a></p>
+
+<p>Центральна виборча комісія<br/>
+пл. Лесі Українки, 1, Київ, 02000<br/>
+<a href="mailto:post@cvk.gov.ua">post@cvk.gov.ua</a></p>
+
+<p>Міжнародна фундація виборчих систем<br/>
+вул. Велика Васильківська, 72 Київ, 03150<br/>
+3-й під’їзд, 8-й поверх<br/>
+<a href="mailto:info@ifesukraine.org">info@ifesukraine.org</a></p>
+
+<p>Координатор проектів ОБСЄ в Україні<br/>
+вул. Стрілецька, 16, Київ, 01030<br/>
+<a href="mailto:office-pcu@osce.org">office-pcu@osce.org</a></p>
+
+<p>Офіс Ради Європи в Україні<br/>
+вул. Іллінська, 8, під'їзд 7, Київ, 04070<br/>
+<a href="mailto:kyiv@coe.int">kyiv@coe.int</a>
 
           </div>
         </div>						
@@ -697,6 +705,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 #photoModal.show {
   display: flex !important;
   align-items: center;
+}
+
+.card-speaker .card-img {
+  height: 480px;
+  object-fit: cover;
 }
 
 </style>
