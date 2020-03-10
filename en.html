@@ -121,7 +121,7 @@
           <div class="innovative-wrapper">
             <h3 class="primary-text">International conference: <br class="d-none d-xl-block"> {{ globalData.title }}</h3>
             <p class="h4 primary-text2 mb-3">{{ globalData.subtitle }}</p>
-            <p>{{ globalData.description }}</p>
+            <vue-markdown key="descr" v-if="globalData.description">{{ globalData.description }}</vue-markdown>
           </div>
         </div>
         <div class="col-lg-6 pl-xl-5">
@@ -527,7 +527,9 @@ var app = new Vue({
     organizers: [],
     photos: [],
     materials: [],
-    globalData: {},
+    globalData: {
+      description: ''
+    },
     currentSpeaker: {
       image: '',
       name: '',
